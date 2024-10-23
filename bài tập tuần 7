@@ -1,0 +1,50 @@
+#include <iostream>
+#include <map>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    map<int, int> population; 
+    population[2010] = 1500;
+    population[2011] = 1800;
+    population[2012] = 1600;
+    population[2013] = 1800;
+    population[2014] = 1400;
+    population[2015] = 1800;
+    population[2016] = 1300;
+    int max_births = 0, min_births = INT_MAX;
+    
+    for (const auto& entry : population) {
+        if (entry.second > max_births) {
+            max_births = entry.second;
+        }
+        if (entry.second < min_births) {
+            min_births = entry.second;
+        }
+    }
+    vector<int> years_max;
+    vector<int> years_min;
+
+    for (const auto& entry : population) {
+        if (entry.second == max_births) {
+            years_max.push_back(entry.first);
+        }
+        if (entry.second == min_births) {
+            years_min.push_back(entry.first);
+        }
+    }
+    cout << "Năm có số lượng người sinh ra lớn nhất: ";
+    for (int year : years_max) {
+        cout << year << " ";
+    }
+    cout << "với số lượng: " << max_births << endl;
+
+    cout << "Năm có số lượng người sinh ra bé nhất: ";
+    for (int year : years_min) {
+        cout << year << " ";
+    }
+    cout << "với số lượng: " << min_births << endl;
+
+    return 0;
+}
